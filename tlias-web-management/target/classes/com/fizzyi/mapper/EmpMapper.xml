@@ -68,4 +68,7 @@
         </where>
 
     </delete>
+    <delete id="deleteByDeptId">
+        delete from emp where dept_id = #{dept_id};
+    </delete>
 </mapper>

@@ -52,4 +52,10 @@ public interface EmpMapper {
      * @param emp
      */
     void updateEmp(Emp emp);
+
+    /**
+     * 根据部门 id 删除员工
+     * @param dept_id 部门 id
+     */
+    void deleteByDeptId(Integer dept_id);
 }

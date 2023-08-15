@@ -1,11 +1,13 @@
 package com.fizzyi.service.impl;
 
 import com.fizzyi.mapper.DeptMapper;
+import com.fizzyi.mapper.EmpMapper;
 import com.fizzyi.pojo.Dept;
 import com.fizzyi.service.DeptService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,10 +24,17 @@ public class DeptServiceImpl implements DeptService {
 
     @Autowired
     private DeptMapper deptMapper;
-
+    @Autowired
+    private EmpMapper empMapper;
+    /**
+     * 通过 id 删除部门数据，同时删除该部门的员工
+     * @param id 部门 id
+     */
     @Override
+    @Transactional // 事物管理
     public void delete(Integer id) {
-        deptMapper.delete(id);
+        deptMapper.delete(id); // 根据 id 删除部门数据
+        empMapper.deleteByDeptId(id); // 根据 部门id 删除员工数据
     }
 
     /**
