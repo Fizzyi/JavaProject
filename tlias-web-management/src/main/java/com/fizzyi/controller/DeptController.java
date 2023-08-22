@@ -1,5 +1,6 @@
 package com.fizzyi.controller;
 
+import com.fizzyi.anno.Log;
 import com.fizzyi.pojo.Dept;
 import com.fizzyi.pojo.Result;
 import com.fizzyi.service.DeptService;
@@ -30,6 +31,7 @@ public class DeptController {
      *
      * @return Result
      */
+
     @GetMapping
     public Result list() {
         log.info("查询全部部门信息");
@@ -42,6 +44,7 @@ public class DeptController {
      * @param id 部门 id
      * @return result
      */
+    @Log
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable("id") Integer id) {
         log.info("通过 id：{} 删除某个部门的数据",id);
@@ -54,6 +57,7 @@ public class DeptController {
      * @param dept dept
      * @return Result
      */
+    @Log
     @PostMapping
     public Result addDept(@RequestBody Dept dept){
         log.info(dept.toString());
