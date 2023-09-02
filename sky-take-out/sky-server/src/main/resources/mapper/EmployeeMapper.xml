@@ -20,6 +20,9 @@
             <if test="status != null">
                 status = #{status},
             </if>
+            <if test="username != null">
+                username = #{username}
+            </if>
         </set>
         where id = #{id};
     </update>

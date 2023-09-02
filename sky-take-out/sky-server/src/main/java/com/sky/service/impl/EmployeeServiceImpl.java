@@ -124,4 +124,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.update(employee);
 
     }
+
+    @Override
+    public Employee findById(Long id) {
+        Employee employee = employeeMapper.findById(id);
+        employee.setPassword("*****");
+        return employee;
+    }
 }
