@@ -92,6 +92,21 @@ public class EmployeeController {
     }
 
     /**
+     * 启用、禁用员工账号
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用、禁用员工账号")
+    public Result employeeStatus(@PathVariable Integer status,@RequestParam Long id){
+        Employee employee = Employee.builder().id(id).status(status).build();
+        log.info("启用、禁用员工账号：{}",employee);
+        employeeService.update(employee);
+        return Result.success();
+    }
+
+    /**
      * 退出
      *
      * @return

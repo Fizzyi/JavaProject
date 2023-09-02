@@ -5,6 +5,7 @@ import com.sky.entity.Employee;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -29,4 +30,10 @@ public interface EmployeeMapper {
      * @return
      */
     Page<Employee> list(String name);
+
+    /**
+     * 修改用户数据
+     * @param employee
+     */
+    void update(Employee employee);
 }

@@ -114,4 +114,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         PageResult pageResult = new PageResult(employeeList.getTotal(), employeeList.getResult());
         return pageResult;
     }
+
+    /**
+     * 启用、禁用员工账号
+     * @param employee
+     */
+    @Override
+    public void update(Employee employee) {
+        employeeMapper.update(employee);
+
+    }
 }

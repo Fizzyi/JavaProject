@@ -28,4 +28,10 @@ public interface EmployeeService {
      * @return
      */
     PageResult list(EmployeePageQueryDTO employeePageQueryDTO);
+
+    /**
+     * 启用，禁用员工账号
+     * @param employee
+     */
+    void update(Employee employee);
 }
