@@ -59,14 +59,13 @@ public class AutoFillAspect {
         // 赋值数据的准备
         LocalDateTime now = LocalDateTime.now();
         Long currentId = BaseContext.getCurrentId();
-
+        // TODO  反射的知识点需要回顾下
         // 根据不同的操作类型，为不同的数据通过反射来赋值
         if (operationType == OperationType.INSERT) {
             Method setCreateTime = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_TIME, LocalDateTime.class);
             Method setCreateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_USER, Long.class);
             Method setUpdateTime = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class);
             Method setUpdateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class);
-
             //通过反射为对象属性赋值
             setCreateTime.invoke(entity, now);
             setUpdateTime.invoke(entity, now);
