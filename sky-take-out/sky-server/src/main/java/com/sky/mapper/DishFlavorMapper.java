@@ -15,4 +15,10 @@ import java.util.List;
 public interface DishFlavorMapper {
 
     void insertBatch(List<DishFlavor> flavorList);
+
+    /**
+     * 通过菜品ID删除对应的口味信息
+     * @param idList
+     */
+    void deleteByDishId(List<Integer> idList);
 }

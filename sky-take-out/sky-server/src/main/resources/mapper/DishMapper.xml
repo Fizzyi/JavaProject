@@ -8,4 +8,38 @@
         values (#{name}, #{categoryId}, #{price}, #{image}, #{description}, #{createTime}, #{updateTime}, #{createUser},
                 #{updateUser}, #{status})
     </insert>
+    <delete id="deleteByIds">
+        delete from dish wehre id in
+        <foreach item="id" collection="idList" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="pageQuery" resultType="com.sky.vo.DishVO">
+        select d.*, c.name as category_name from dish d left outer join category c on d.category_id = c.id
+        <where>
+            <if test="name != null">
+                and d.name like concat('%',#{name},'%')
+            </if>
+            <if test="categoryId != null">
+                and d.category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                and d.status = #{status}
+            </if>
+        </where>
+        order by d.create_time desc
+    </select>
+    <select id="select" resultType="com.sky.entity.Dish">
+        select id, name, status
+        from dish
+        where id in
+        <foreach item="id" collection="idList" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+    <select id="findRelationSetmealByDishId" resultType="com.sky.entity.SetmealDish">
+        select *
+        from setmeal_dish
+        where id = #{id}
+    </select>
 </mapper>
