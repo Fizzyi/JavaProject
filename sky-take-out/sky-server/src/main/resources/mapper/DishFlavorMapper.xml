@@ -10,9 +10,17 @@
         </foreach>
     </insert>
     <delete id="deleteByDishId">
-        delete from dish_flavor where dish_id in
-        <foreach item="id" collection="idList" open="(" separator="," close=")">
-            #{id}
-        </foreach>
+        <if test="idList.size = 1">
+            delete from dish_flavor where dish_id = #{idList[0]}
+        </if>
+        <if test="idList.size >1">
+            delete from dish_flavor where dish_id in
+            <foreach item="id" collection="idList" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
     </delete>
+    <select id="getByDishId" resultType="com.sky.entity.DishFlavor">
+        select * from dish_flavor where dish_id = #{dishId};
+    </select>
 </mapper>

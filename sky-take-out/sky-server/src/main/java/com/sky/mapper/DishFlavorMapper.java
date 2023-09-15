@@ -18,7 +18,16 @@ public interface DishFlavorMapper {
 
     /**
      * 通过菜品ID删除对应的口味信息
+     *
      * @param idList
      */
-    void deleteByDishId(List<Integer> idList);
+    void deleteByDishId(List<Long> idList);
+
+    /**
+     * 通过菜品ID查询对应的口味信息
+     *
+     * @param dishId 菜品ID
+     * @return
+     */
+    List<DishFlavor> getByDishId(Integer dishId);
 }

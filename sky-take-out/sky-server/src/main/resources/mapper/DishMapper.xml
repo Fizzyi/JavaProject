@@ -8,6 +8,31 @@
         values (#{name}, #{categoryId}, #{price}, #{image}, #{description}, #{createTime}, #{updateTime}, #{createUser},
                 #{updateUser}, #{status})
     </insert>
+    <update id="updateById">
+        update dish
+        <set>
+            <if test="name != null ">
+                name = #{name},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+        </set>
+        where id = #{id};
+
+    </update>
     <delete id="deleteByIds">
         <if test="idList.size() == 1">
             delete from dish where id = #{idList[0]}
@@ -46,5 +71,8 @@
         select *
         from setmeal_dish
         where id = #{id}
+    </select>
+    <select id="getById" resultType="com.sky.entity.Dish">
+        select * from dish where id = #{id};
     </select>
 </mapper>

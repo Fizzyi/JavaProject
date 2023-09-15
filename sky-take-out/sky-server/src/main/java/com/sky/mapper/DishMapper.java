@@ -56,5 +56,18 @@ public interface DishMapper {
      * 通过ID删除菜品数据
      * @param idList
      */
-    void deleteByIds(List<Integer> idList);
+    void deleteByIds(List<Long> idList);
+
+    /**
+     * 通过ID查询菜品
+     * @param id
+     * @return
+     */
+    Dish getById(Integer id);
+
+    /**
+     * 通过ID更新数据
+     * @param dish
+     */
+    void updateById(Dish dish);
 }
