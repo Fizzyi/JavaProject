@@ -117,7 +117,7 @@ public class DishServiceImpl implements DishService {
      * @return
      */
     @Override
-    public DishVO getById(Integer id) {
+    public DishVO getById(Long id) {
         // 查询菜品信息
         Dish dish = dishMapper.getById(id);
         // 查询菜品口味信息
@@ -130,7 +130,7 @@ public class DishServiceImpl implements DishService {
     }
 
     /**
-     * 通过ID更新菜品信息
+     * 通过ID更新菜品信息和口味信息
      *
      * @param dishDTO
      */
@@ -145,8 +145,7 @@ public class DishServiceImpl implements DishService {
         List<DishFlavor> flavors = dishDTO.getFlavors();
         List<Long> dishId = new ArrayList<>();
         dishId.add(dish.getId());
-        log.info("需要删除的口味的菜品ID为：{}", dishId);
-        log.info("需要新增的口味数据为:{}", flavors);
+        // 先删除在重新插入
         dishFlavorMapper.deleteByDishId(dishId);
         if (flavors.size() > 0) {
             flavors.forEach(dishFlavor -> dishFlavor.setDishId(dish.getId()));

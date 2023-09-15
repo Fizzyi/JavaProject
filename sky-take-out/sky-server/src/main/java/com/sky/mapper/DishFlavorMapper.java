@@ -29,5 +29,5 @@ public interface DishFlavorMapper {
      * @param dishId 菜品ID
      * @return
      */
-    List<DishFlavor> getByDishId(Integer dishId);
+    List<DishFlavor> getByDishId(Long dishId);
 }

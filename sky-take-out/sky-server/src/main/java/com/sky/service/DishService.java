@@ -47,7 +47,7 @@ public interface DishService {
      * @param id
      * @return
      */
-    public DishVO getById(Integer id);
+    public DishVO getById(Long id);
 
     /**
      * 通过ID更新菜品信息

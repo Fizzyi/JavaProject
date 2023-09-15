@@ -63,7 +63,7 @@ public interface DishMapper {
      * @param id
      * @return
      */
-    Dish getById(Integer id);
+    Dish getById(Long id);
 
     /**
      * 通过ID更新数据

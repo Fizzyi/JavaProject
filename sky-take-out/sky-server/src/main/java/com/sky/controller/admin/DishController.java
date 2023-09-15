@@ -52,13 +52,12 @@ public class DishController {
     @ApiOperation(value = "批量删除菜品")
     public Result deleteDish(@RequestParam List<Long> ids) {
         log.info("批量删除菜品:{}", ids);
-        Result result = dishService.deleteDish(ids);
-        return result;
+        return dishService.deleteDish(ids);
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "通过ID查询菜品")
-    public Result<DishVO> getById(@PathVariable Integer id) {
+    public Result<DishVO> getById(@PathVariable Long id) {
         log.info("通过ID查询菜品，查询的ID为：{}", id);
         DishVO dishVO = dishService.getById(id);
         return Result.success(dishVO);
