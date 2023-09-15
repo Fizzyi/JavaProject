@@ -40,7 +40,7 @@ public interface DishMapper {
 
     /**
      * 通过 ID批量查询菜品信息
-     * @param ids
+     * @param idList
      * @return
      */
     List<Dish> select(List idList);

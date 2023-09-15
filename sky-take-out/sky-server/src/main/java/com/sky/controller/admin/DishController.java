@@ -12,6 +12,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 菜品管理
  *
@@ -47,10 +49,10 @@ public class DishController {
 
     @DeleteMapping()
     @ApiOperation(value = "批量删除菜品")
-    public Result deleteDish(String ids) {
+    public Result deleteDish(@RequestParam List<Integer> ids) {
         log.info("批量删除菜品:{}", ids);
         Result result = dishService.deleteDish(ids);
-        return Result.success();
+        return result;
     }
 
 }

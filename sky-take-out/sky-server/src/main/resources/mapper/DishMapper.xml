@@ -9,10 +9,15 @@
                 #{updateUser}, #{status})
     </insert>
     <delete id="deleteByIds">
-        delete from dish wehre id in
-        <foreach item="id" collection="idList" open="(" separator="," close=")">
-            #{id}
-        </foreach>
+        <if test="idList.size() == 1">
+            delete from dish where id = #{idList[0]}
+        </if>
+        <if test="idList.size() >1">
+            delete from dish wehre id in
+            <foreach item="id" collection="idList" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
     </delete>
     <select id="pageQuery" resultType="com.sky.vo.DishVO">
         select d.*, c.name as category_name from dish d left outer join category c on d.category_id = c.id

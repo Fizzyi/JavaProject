@@ -80,20 +80,13 @@ public class DishServiceImpl implements DishService {
     /**
      * 通过ID批量删除菜品
      *
-     * @param ids
+     * @param idList
      * @return
      */
+    @Transactional
     @Override
-    public Result deleteDish(String ids) {
-        // TODO （1）查询菜品是否是起售状态 （2）查询菜品是否被套餐关联 （3）被删除后关联的口味也需要被删除
-        String[] parts = ids.split(","); // 使用逗号分隔字符串
-        List<Integer> idList = new ArrayList<>();
-        for (String part : parts) {
-            int id = Integer.parseInt(part.trim()); // 转换为整数
-            idList.add(id);
-        }
+    public Result deleteDish(List<Integer> idList) {
         // 通过ID批量查询菜品数据
-        log.info("ids转换为了列表,{}", idList);
         List<Dish> dishList = dishMapper.select(idList);
         log.info("通过ID批量查询菜品信息:{}", dishList);
         for (Dish dish : dishList) {
@@ -104,8 +97,8 @@ public class DishServiceImpl implements DishService {
             }
         }
         // 查询菜品是否被套餐关联
-        for (Integer id : idList) {
-            SetmealDish setmealDish = dishMapper.findRelationSetmealByDishId(id);
+        for (Object id : idList) {
+            SetmealDish setmealDish = dishMapper.findRelationSetmealByDishId((Integer) id);
             if (setmealDish != null) {
                 return Result.error(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
             }
@@ -114,6 +107,6 @@ public class DishServiceImpl implements DishService {
         dishMapper.deleteByIds(idList);
         // 删除口味数据
         dishFlavorMapper.deleteByDishId(idList);
-        return null;
+        return Result.success();
     }
 }

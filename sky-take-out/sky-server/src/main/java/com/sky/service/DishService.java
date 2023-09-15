@@ -6,6 +6,8 @@ import com.sky.result.PageResult;
 import com.sky.result.Result;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Demo class
  *
@@ -33,5 +35,5 @@ public interface DishService {
      * @param ids
      * @return
      */
-    Result deleteDish(String ids);
+    public Result deleteDish(List<Integer> ids);
 }
