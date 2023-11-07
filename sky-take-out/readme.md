@@ -4,3 +4,7 @@
 
 安装依赖：npm install
 启动：nom run serve
+
+## docker mysql 和 redis
+
+docker start 
