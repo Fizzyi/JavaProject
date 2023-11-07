@@ -70,4 +70,11 @@ public interface DishMapper {
      * @param dish
      */
     void updateById(Dish dish);
+
+    /**
+     * 通过 categoryId 查询菜品列表
+     * @param dish
+     * @return
+     */
+    List<Dish> list(Dish dish);
 }

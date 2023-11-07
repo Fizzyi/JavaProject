@@ -22,7 +22,7 @@ import java.util.List;
  * @time 2023/9/5
  */
 
-@RestController
+@RestController("adminDishController")
 @RequestMapping("/admin/dish")
 @Api(tags = "菜品相关接口")
 @Slf4j
