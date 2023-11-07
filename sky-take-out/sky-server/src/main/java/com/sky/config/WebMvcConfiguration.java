@@ -95,16 +95,10 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      *
      * @param registry
      */
-    protected void addResour
-
-    Handler("/doc.html").
-
-    addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**").
-
-    addResourceLocations("classpath:/META-INF/resources/webjars/");
-
-}
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
 
     /**
      * 设置消息转换器
