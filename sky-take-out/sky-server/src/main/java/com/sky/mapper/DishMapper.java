@@ -77,4 +77,6 @@ public interface DishMapper {
      * @return
      */
     List<Dish> list(Dish dish);
+
+    void updateStatusById(Dish dish);
 }

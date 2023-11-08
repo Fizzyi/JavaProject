@@ -24,7 +24,7 @@ public interface DishService {
      *
      * @param dishDTO
      */
-    public void saveWithFlavor(DishDTO dishDTO);
+    void saveWithFlavor(DishDTO dishDTO);
 
     /**
      * 菜品分页查询
@@ -32,7 +32,7 @@ public interface DishService {
      * @param dishPageQueryDTO
      * @return
      */
-    public PageResult pageQuery(DishPageQueryDTO dishPageQueryDTO);
+    PageResult pageQuery(DishPageQueryDTO dishPageQueryDTO);
 
     /**
      * 通过 ID 批量删除菜品
@@ -40,7 +40,7 @@ public interface DishService {
      * @param ids
      * @return
      */
-    public Result deleteDish(List<Long> ids);
+    Result deleteDish(List<Long> ids);
 
     /**
      * 通过 ID 查询菜品
@@ -48,7 +48,7 @@ public interface DishService {
      * @param id
      * @return
      */
-    public DishVO getById(Long id);
+    DishVO getById(Long id);
 
     /**
      * 通过ID更新菜品信息
@@ -59,8 +59,18 @@ public interface DishService {
 
     /**
      * 通过 category_id 查询菜品
+     *
      * @param dish
      * @return
      */
     List<DishVO> listWithFlavor(Dish dish);
+
+    /**
+     * 通过 dishId 修改 是否停售
+     *
+     * @param dish
+     */
+    void updateDishStatus(Dish dish);
+
+    List<Dish> list(Dish dish);
 }

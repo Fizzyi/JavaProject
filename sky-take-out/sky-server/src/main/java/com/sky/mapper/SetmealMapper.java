@@ -1,6 +1,10 @@
 package com.sky.mapper;
 
+import com.github.pagehelper.Page;
+import com.sky.dto.SetmealDTO;
+import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
+import com.sky.entity.SetmealDish;
 import com.sky.vo.DishItemVO;
 import com.sky.vo.SetmealVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,4 +27,14 @@ public interface SetmealMapper {
     List<SetmealVO> list(Setmeal setmeal);
 
     List<DishItemVO> getDishItemById(Long id);
+
+    Page<SetmealVO> pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
+
+    void save(Setmeal setmeal);
+
+    void insetSetmealDishList(List<SetmealDish> setmealDishList);
+
+    SetmealVO getById(SetmealDTO setmealDTO);
+
+    List<SetmealDish> getSetmealDishById(SetmealDTO setmealDTO);
 }

@@ -160,7 +160,7 @@ public class DishServiceImpl implements DishService {
         // 查询每个菜品的口味
         for (Dish d : dishList) {
             DishVO dishVO = new DishVO();
-            BeanUtils.copyProperties(d,dishVO);
+            BeanUtils.copyProperties(d, dishVO);
             // 根据菜品id 查询查询对应的口味
             List<DishFlavor> flavorList = dishFlavorMapper.getByDishId(dishVO.getId());
             dishVO.setFlavors(flavorList);
@@ -168,4 +168,15 @@ public class DishServiceImpl implements DishService {
         }
         return dishVoList;
     }
+
+    @Override
+    public void updateDishStatus(Dish dish) {
+        dishMapper.updateStatusById(dish);
+    }
+
+    @Override
+    public List<Dish> list(Dish dish) {
+        return dishMapper.list(dish);
+    }
 }
+
