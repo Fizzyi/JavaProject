@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -37,6 +38,7 @@ public class SetmealController {
 
     @PostMapping("")
     @ApiOperation("新增套餐")
+    @CacheEvict(cacheNames = "setmeal",key="#setmealDTO.categoryId")
     public Result save(@RequestBody SetmealDTO setmealDTO) {
         log.info("新增套餐接受的参数：{}", setmealDTO);
         setmealService.save(setmealDTO);
@@ -51,4 +53,6 @@ public class SetmealController {
         SetmealVO setmealVO = setmealService.getById(setmealDTO);
         return Result.success(setmealVO);
     }
+    // todo:删除套餐接口
+    // todo:更新套餐接口
 }
