@@ -21,7 +21,9 @@
         update orders
         set status        = #{status},
             pay_status    = #{payStatus},
-            checkout_time = #{checkoutTime}
+            checkout_time = #{checkoutTime},
+            cancel_time   = #{cancelTime},
+            cancel_reason = #{cancelReason}
         where id = #{id};
     </update>
 </mapper>

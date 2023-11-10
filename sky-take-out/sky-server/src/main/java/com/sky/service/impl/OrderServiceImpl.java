@@ -55,9 +55,6 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 用户下单接口
-     *
-     * @param ordersSubmitDTO
-     * @return
      */
     @Override
     @Transactional
