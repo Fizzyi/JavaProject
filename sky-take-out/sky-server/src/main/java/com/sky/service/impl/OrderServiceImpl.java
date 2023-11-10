@@ -11,6 +11,7 @@ import com.sky.exception.OrderBusinessException;
 import com.sky.exception.ShoppingCartBusinessException;
 import com.sky.mapper.*;
 import com.sky.service.OrderService;
+import com.sky.service.WebSocketServer;
 import com.sky.utils.WeChatPayUtil;
 import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderSubmitVO;
@@ -19,11 +20,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.alibaba.fastjson.JSON;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -52,6 +56,8 @@ public class OrderServiceImpl implements OrderService {
     private UserMapper userMapper;
     @Autowired
     private WeChatPayUtil weChatPayUtil;
+    @Autowired
+    private WebSocketServer webSocketServer;
 
     /**
      * 用户下单接口
@@ -106,6 +112,14 @@ public class OrderServiceImpl implements OrderService {
         orderSubmitVO.setOrderNumber(orders.getNumber());
         orderSubmitVO.setOrderAmount(ordersSubmitDTO.getAmount());
         orderSubmitVO.setOrderTime(LocalDateTime.now());
+        // 因为没有接入后面的微信支付，没法测试 websocket，所以在这里进行测试 websocket
+        // 通过 websocket 推送信息
+        Map map = new HashMap<>();
+        map.put("type", "1");
+        map.put("orderId", order_id);
+        map.put("content", "订单号：" + order_id);
+        String json = JSON.toJSONString(map);
+        webSocketServer.sendToAllClient(json);
         return orderSubmitVO;
     }
 
@@ -157,5 +171,13 @@ public class OrderServiceImpl implements OrderService {
                 .checkoutTime(LocalDateTime.now())
                 .build();
         orderMapper.update(orders);
+
+        // 通过 websocket 推送信息
+        Map map = new HashMap<>();
+        map.put("type", "1");
+        map.put("orderId", ordersDB.getId());
+        map.put("content", "订单号：" + outTradeNo);
+        String json = JSON.toJSONString(map);
+        webSocketServer.sendToAllClient(json);
     }
 }
