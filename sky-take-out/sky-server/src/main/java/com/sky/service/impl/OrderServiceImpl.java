@@ -154,6 +154,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
+     * 催单功能
+     *
+     * @param id
+     */
+    @Override
+    public void reminder(String id) {
+        Map map = new HashMap<>();
+        map.put("type", "2");
+        map.put("orderId", id);
+        map.put("content", "订单号：" + id);
+        String json = JSON.toJSONString(map);
+        webSocketServer.sendToAllClient(json);
+    }
+
+    /**
      * 支付成功，修改订单状态
      *
      * @param outTradeNo

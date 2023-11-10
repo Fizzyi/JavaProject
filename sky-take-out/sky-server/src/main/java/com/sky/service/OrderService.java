@@ -16,4 +16,5 @@ public interface OrderService {
 
     OrderPaymentVO payment(OrdersPaymentDTO ordersPaymentDTO) throws Exception;
 
+    void reminder(String id);
 }

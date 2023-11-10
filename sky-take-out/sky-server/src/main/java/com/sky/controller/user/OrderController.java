@@ -51,4 +51,12 @@ public class OrderController {
         log.info("生成预支付交易单：{}", orderPaymentVO);
         return Result.success(orderPaymentVO);
     }
+
+    @ApiOperation("催单接口")
+    @GetMapping("/reminder/{id}")
+    public Result reminder(@PathVariable String id) {
+        log.info("用户催单，订单id为{}", id);
+        orderService.reminder(id);
+        return Result.success();
+    }
 }
