@@ -1,5 +1,6 @@
 package com.hmall.api.client;
 
+import com.hmall.api.config.DefaultFeignConfig;
 import com.hmall.api.dto.ItemDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import java.util.List;
  * @author Zhaohangyi
  * @time 2023/11/24
  */
-@FeignClient("item-service")
+@FeignClient(value = "item-service", configuration = DefaultFeignConfig.class)
 public interface ItemClient {
 
     /**
