@@ -11,3 +11,5 @@ docker run -d \
 ```
 
 1. mysql 如果也是用 docker 启动的，需要创建一个网络组，将两个容器都添加到网络组中。
+
+nacos 本地地址： http://127.0.0.1:8848/nacos 账号秘密都为 nacos
