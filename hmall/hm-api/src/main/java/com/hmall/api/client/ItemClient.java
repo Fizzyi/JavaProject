@@ -1,5 +1,6 @@
 package com.hmall.api.client;
 
+import com.hmall.api.client.fallback.ItemClientFallback;
 import com.hmall.api.config.DefaultFeignConfig;
 import com.hmall.api.dto.ItemDTO;
 import com.hmall.api.dto.OrderDetailDTO;
@@ -18,7 +19,7 @@ import java.util.List;
  * @author Zhaohangyi
  * @time 2023/11/24
  */
-@FeignClient(value = "item-service", configuration = DefaultFeignConfig.class)
+@FeignClient(value = "item-service", configuration = DefaultFeignConfig.class,fallbackFactory = ItemClientFallback.class)
 public interface ItemClient {
 
     /**
